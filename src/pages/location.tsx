@@ -285,6 +285,7 @@ const Location = () => {
                         zoomControl: false,
                         heading: heading, // Dynamic Heading
                         tilt: 45, // 3D Perspective
+                        // @ts-ignore
                         padding: padding // Offset for bottom sheet
                     }}
                 >
