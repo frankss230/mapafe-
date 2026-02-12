@@ -26,7 +26,9 @@ interface ReplyNotification {
         takecare_tel1 : string;
         takecare_id   : number;
     };
-    resSafezone      : {};
+    resSafezone      : {
+        safezone_id?: number;
+    };
     extendedHelpId   : number;
     locationData : {
         locat_latitude : string;
@@ -204,6 +206,17 @@ export const replyNotification = async ({
                                             type: 'postback',
                                             label: 'ตอบรับเคสช่วยเหลือ',
                                             data: `type=accept&takecareId=${resTakecareperson.takecare_id}&extenId=${extendedHelpId}&userLineId=${resUser.users_line_id}`,
+                                        },
+                                    },
+                                     {
+                                        type: 'button',
+                                        style: 'secondary',
+                                        height: 'sm',
+                                        margin: 'sm',
+                                        action: {
+                                            type: 'uri',
+                                            label: 'ดูแผนที่',
+                                            uri: `${process.env.WEB_DOMAIN}/location?idlocation=${extendedHelpId}&idsafezone=${resSafezone?.safezone_id || ''}&auToken=${resUser.users_line_id}`
                                         },
                                     },
                                     {
